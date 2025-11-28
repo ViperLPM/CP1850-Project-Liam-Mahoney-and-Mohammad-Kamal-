@@ -16,6 +16,11 @@ def create_deck_list(suit, rank, point_value):
             deck.append(card)
     return deck
 
+def draw_card(deck):
+    hand= random.choice(deck)
+    deck.remove(hand)
+    return hand
+
 
 
 
@@ -25,8 +30,12 @@ def main():
     suit= ["Hearts", "Diamonds", "Clubs", "Spades"]
     rank=["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
     point_value=["2", "3", "4", "5", "6", "7", "8", "9", "10","10","10", "10", "11"]
-    create_deck_list(suit,rank,point_value)
-    print(create_deck_list(suit, rank, point_value))
+    full_deck=create_deck_list(suit,rank,point_value)
+    """checking the amount od cards because getting confused if its drawing correctly or not
+    print(f"initial size of deck: {len(full_deck)} ")
+    test_draw=draw_card(full_deck)
+    print(test_draw)
+    print(f"New deck size:{len(full_deck)}")"""
 
 if __name__=="__main__":
     main()
