@@ -38,9 +38,33 @@ def get_hand_points(hand):
     return points
 
 
+def initialize_money(start_amount=100.00):
+    file_name= db.FILENAME
+    try:
+        money= db.read_money()
+        return money
+    except FileNotFoundError:
+        print(f"File {file_name} not found. Initializing money to {start_amount}." )
+        db.write_money(str(start_amount))
+        return start_amount
+    except ValueError:
+        print(f"Error reading {file_name} as it is invalid. Initialize money to {start_amount}.")
+        db.write_money(str(start_amount))
+        return start_amount
+
+
+"""def get_bet(money_amount):
+    min_bet= 5
+    max_bet = 1000
+    current_money= money_amount
+    bet_input = input(f"Bet amount (minimum{min_bet} to max{max_bet}:   ")
+    bet"""
+
+
 def main():
     print("BLACKJACK")
     print("Blackjack payout is 3:2")
+    money_amount= db.read_money()
     suit= ["Hearts", "Diamonds", "Clubs", "Spades"]
     rank=["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
     point_value=[2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]
