@@ -52,6 +52,23 @@ def initialize_money(start_amount=100.00):
         db.write_money(str(start_amount))
         return start_amount
 
+def validate_bet_amount(money_amount):
+    min_amount = 5
+    while money_amount < min_amount:
+        print(f"Current money ({money_amount}) is less than {min_amount}")
+        choice = input("Would you like to buy chips? (y/n)")
+        if choice.lower() == "y":
+            purchase_amount = 100
+            money_amount += purchase_amount
+            db.write_money(str(money_amount))
+            print(f"You purchased {purchase_amount}, your current balance is now {money_amount}")
+            break
+        elif choice.lower() == "n":
+            print("You can no longer place a minimum bet.")
+            return None
+        else:
+            print("invalid input, enter either y or n")
+    return money_amount
 
 """def get_bet(money_amount):
     min_bet= 5
