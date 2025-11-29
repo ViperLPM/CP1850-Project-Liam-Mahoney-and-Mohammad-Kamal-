@@ -96,6 +96,9 @@ def main():
     card_points=get_hand_points(single_card_hand)
     print(f"points for the drawn card is: {card_points}")
 
+    test_fund = 2
+    validate_bet_amount(test_fund)
+
 
 if __name__=="__main__":
     main()
