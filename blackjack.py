@@ -1,13 +1,7 @@
 import db
 import random
 
-#imported the read and write txt functions on db.py
-#prototype idea of dealer's show card for the time being
-#switching the suit, rank and point_value arg to main
 def create_deck_list(suit, rank, point_value):
-    """suit_choice=random.choice(suit)
-    rank_choice=random.choice(rank)
-    print(f"{rank_choice} of {suit_choice}")"""
     deck=[]
     for suits in suit:
         for i, ranks in enumerate(rank):
@@ -109,6 +103,27 @@ def dealer_turn(dealer_hand, full_deck):
     else:
         return False
 
+def player_turn(player_hand, full_deck):
+    while True:
+        player_points =get_hand_points(player_hand)
+        if player_points > 21:
+            return True
+        elif player_points ==21:
+            return False
+        choice= input ("Hit or stand? (hit/stand):  ").lower()
+        if choice == "stand":
+            return False
+        elif choice == "hit":
+            new_card= draw_card(full_deck)
+            player_hand.append(new_card)
+
+            print("\nYOUR CARDS:")
+            for card in player_hand:
+                print(f"{card[1]} of {card[0]}")
+        else:
+            print("Please type 'hit or 'stand' ")
+
+
 
 
 def main():
@@ -132,16 +147,19 @@ def main():
     single_card_hand= [test_draw]
     card_points=get_hand_points(single_card_hand)
     print(f"points for the drawn card is: {card_points}")
-    """dealer_test_hand= []
+    """player_test_hand= []
     first_card = draw_card(full_deck)
-    dealer_test_hand.append(first_card)
+    player_test_hand.append(first_card)
 
     second_card = draw_card(full_deck)
-    dealer_test_hand.append(second_card)
+    player_test_hand.append(second_card)
 
-    dealer_turn(dealer_test_hand, full_deck)
+    player_turn(player_test_hand, full_deck)
     
-    tested dealer_turn"""
+    tested player_turn()"""
+    
+
+
 
 
 
