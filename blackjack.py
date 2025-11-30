@@ -94,6 +94,22 @@ def get_bet(money_amount):
         return bet
 
 
+def dealer_turn(dealer_hand, full_deck):
+    for card in dealer_hand:
+        print(f"{card[1]} of {card[0]}")
+
+    while get_hand_points(dealer_hand) < 17:
+        new_card= draw_card(full_deck)
+        dealer_hand.append(new_card)
+        print(f"DEALER'S CARDS :{new_card[1]} of {new_card[0]}")
+
+    dealer_points= get_hand_points(dealer_hand)
+    if dealer_points > 21:
+        return True
+    else:
+        return False
+
+
 
 def main():
     print("BLACKJACK")
@@ -116,6 +132,18 @@ def main():
     single_card_hand= [test_draw]
     card_points=get_hand_points(single_card_hand)
     print(f"points for the drawn card is: {card_points}")
+    """dealer_test_hand= []
+    first_card = draw_card(full_deck)
+    dealer_test_hand.append(first_card)
+
+    second_card = draw_card(full_deck)
+    dealer_test_hand.append(second_card)
+
+    dealer_turn(dealer_test_hand, full_deck)
+    
+    tested dealer_turn"""
+
+
 
 
 
