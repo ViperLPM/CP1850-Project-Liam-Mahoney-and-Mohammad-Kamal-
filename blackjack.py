@@ -180,12 +180,17 @@ def main():
         player_hand.append(draw_card(full_deck))
         dealer_hand.append(draw_card(full_deck))
         print(f"Bet amount: {bet}")
+        print()
+
         dealer_show_card = dealer_hand[0]
         print(f"DEALER'S SHOW CARD: {dealer_show_card[1]} of {dealer_show_card[0]}")
         print()
+
         print("YOUR CARDS:")
         for card in player_hand:
             print(f"{card[1]} of {card[0]}")
+        print()
+
         player_over_21 = player_turn(player_hand, full_deck)
         dealer_over_21 = False
         if not player_over_21:
