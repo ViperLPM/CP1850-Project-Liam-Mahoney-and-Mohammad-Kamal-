@@ -82,7 +82,7 @@ def get_bet(money_amount):
             print(f"The maximum bet should be {max_bet}")
             continue
         if bet > money_amount:
-            print(f"The bet cannot be bigger than the player's current money{money_amount} amount")
+            print(f"The bet cannot be bigger than the player's current money({money_amount}) amount")
             continue
 
         return bet
@@ -127,6 +127,7 @@ def define_winner(player_hand, dealer_hand, player_over_21, dealer_over_21, bet,
     dealer_points = get_hand_points(dealer_hand)
     print(f"YOUR POINTS: {player_points}")
     print(f"DEALER'S POINTS: {dealer_points}")
+    print()
     if player_over_21:
         print("Sorry, You Lose")
         winnings = 0
@@ -153,6 +154,7 @@ def define_winner(player_hand, dealer_hand, player_over_21, dealer_over_21, bet,
     money += winnings
     db.write_money(str(money))
     print(f"Money: {money}")
+    print()
     return money
 
 def main():
@@ -192,11 +194,14 @@ def main():
         print()
 
         player_over_21 = player_turn(player_hand, full_deck)
+        print()
         dealer_over_21 = False
         if not player_over_21:
             dealer_over_21 = dealer_turn(dealer_hand, full_deck)
+        print()
         money = define_winner(player_hand, dealer_hand, player_over_21, dealer_over_21, bet, money)
         play_again = input("Play Again? (y/n): ").lower()
+        print()
         if play_again != 'y':
             print("Come Back soon!")
             print("Bye!")
