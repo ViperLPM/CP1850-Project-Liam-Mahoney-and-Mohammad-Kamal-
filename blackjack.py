@@ -89,12 +89,12 @@ def get_bet(money_amount):
 
 def dealer_turn(dealer_hand, full_deck):
     for card in dealer_hand:
-        print(f"{card[1]} of {card[0]}")
+        print(f"DEALER'S CARDS: {card[1]} of {card[0]}")
 
     while get_hand_points(dealer_hand) < 17:
         new_card= draw_card(full_deck)
         dealer_hand.append(new_card)
-        print(f"DEALER'S CARDS :{new_card[1]} of {new_card[0]}")
+        print(f"DEALER'S CARDS: {new_card[1]} of {new_card[0]}")
 
     dealer_points= get_hand_points(dealer_hand)
     if dealer_points > 21:
